@@ -10,12 +10,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type='text/javascript' src='lib/web3.min.js'></script>
 
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
-<div class="container">
+<div class="container" class="container-fluid">
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <!-- Brand -->
@@ -28,6 +29,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Home</a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-getethbalance">Fetch Ethereum Balance</a>
+            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#modal-about">About</a>
             </li>
@@ -38,16 +44,81 @@
                     References
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp">Bootstrap 4 Navigation Bar</a>
-                    <a class="dropdown-item" href="https://www.w3schools.com/bootstrap4/bootstrap_modal.asp">Bootstrap 4 Modal</a>
+                    <a class="dropdown-item" target="_blank" href="https://etherscan.io/apis#stats">Etherscan General Stats</a>
+                    <a class="dropdown-item" target="_blank" href="https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp" >Bootstrap 4 Navigation Bar</a>
+                    <a class="dropdown-item" target="_blank" href="https://www.w3schools.com/bootstrap4/bootstrap_modal.asp">Bootstrap 4 Modal</a>
+                    <a class="dropdown-item" target="_blank" href="https://www.w3schools.com/bootstrap4/bootstrap_toast.asp">Bootstrap 4 Toast</a>
                 </div>
             </li>
         </ul>
 
     </nav>
 
+    <!-- Toasters -->
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="toast" id="toast-etherScanTotalEtherSupply">
+                <div class="toast-header">
+                    Total Supply of Ether
+                </div>
+                <div class="toast-body" id="toast-body-text-etherScanTotalEtherSupply">
+                    Fetching stats....
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="toast" id="toast-etherScanGetEtherLastPrice">
+                <div class="toast-header">
+                    Ethereum Lastest Price
+                </div>
+                <div class="toast-body" id="toast-body-text-etherScanGetEtherLastPrice">
+                    Fetching stats....
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p></p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="toast min-vw-100" id="toast-etherAddressBalance">
+                <div class="toast-header">
+                    Ethereum Balance
+                </div>
+                <div class="toast-body" id="toast-body-text-etherAddressBalance">
+                    Fetching stats....
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modals -->
+    <!-- About Modal -->
+    <div class="modal fade" id="modal-about">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">About</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" id="modal-body-about">
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <!-- Welcome Modal -->
     <div class="modal fade" id="modal-welcome">
@@ -68,7 +139,42 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Continue</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="modal-welcome-btn-continue">Continue</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal - Get Ethereum Balance -->
+    <div class="modal fade" id="modal-getethbalance">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Fetch Ethereum Balance</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body" id="modal-body-text">
+                    <p>Welcome to the Ethereum Balance Checker Application!</p>
+
+                    <form id="formGetEthBalance" name="getethbalance" role="form">
+                        <div class="form-group">
+                            <label for="formGroupEthAddress">Ethereum Address</label>
+                            <input type="text" class="form-control" id="formGroupEthAddress"
+                                   value='0x864705E03b68A035CE867cfA2EbAecA1Fe9E9995'
+                                   placeholder="Ethererum Address" required>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary " name="submit" type="submit" id="modal-getethbalanc-submit">Submit</button>
                 </div>
 
             </div>
@@ -80,10 +186,10 @@
 
     <!-- Footer -->
     <div class="pgfooter">
-        <p>Copyright </p>
+        <p>© 2019 Copyright: MJQ Demo Corp</p>
     </div>
 
 </div>
 </body>
-    <script src="lib/app.js"></script>
+    <script src="lib/app.js" type="text/javascript"></script>
 </html>
