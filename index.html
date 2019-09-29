@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<div class="container">
+<div class="container" class="container-fluid">
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
         <!-- Brand -->
@@ -44,13 +44,55 @@
                     References
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp">Bootstrap 4 Navigation Bar</a>
-                    <a class="dropdown-item" href="https://www.w3schools.com/bootstrap4/bootstrap_modal.asp">Bootstrap 4 Modal</a>
+                    <a class="dropdown-item" target="_blank" href="https://etherscan.io/apis#stats">Etherscan General Stats</a>
+                    <a class="dropdown-item" target="_blank" href="https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp" >Bootstrap 4 Navigation Bar</a>
+                    <a class="dropdown-item" target="_blank" href="https://www.w3schools.com/bootstrap4/bootstrap_modal.asp">Bootstrap 4 Modal</a>
+                    <a class="dropdown-item" target="_blank" href="https://www.w3schools.com/bootstrap4/bootstrap_toast.asp">Bootstrap 4 Toast</a>
                 </div>
             </li>
         </ul>
 
     </nav>
+
+    <!-- Toasters -->
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="toast" id="toast-etherScanTotalEtherSupply">
+                <div class="toast-header">
+                    Total Supply of Ether
+                </div>
+                <div class="toast-body" id="toast-body-text-etherScanTotalEtherSupply">
+                    Fetching stats....
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="toast" id="toast-etherScanGetEtherLastPrice">
+                <div class="toast-header">
+                    Ethereum Lastest Price
+                </div>
+                <div class="toast-body" id="toast-body-text-etherScanGetEtherLastPrice">
+                    Fetching stats....
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p></p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="toast min-vw-100" id="toast-etherAddressBalance">
+                <div class="toast-header">
+                    Ethereum Balance
+                </div>
+                <div class="toast-body" id="toast-body-text-etherAddressBalance">
+                    Fetching stats....
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Modals -->
     <!-- About Modal -->
@@ -97,7 +139,7 @@
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Continue</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="modal-welcome-btn-continue">Continue</button>
                 </div>
 
             </div>
@@ -122,39 +164,17 @@
                     <form id="formGetEthBalance" name="getethbalance" role="form">
                         <div class="form-group">
                             <label for="formGroupEthAddress">Ethereum Address</label>
-                            <input type="text" class="form-control" id="formGroupEthAddress" placeholder="Ethererum Address">
+                            <input type="text" class="form-control" id="formGroupEthAddress"
+                                   value='0x864705E03b68A035CE867cfA2EbAecA1Fe9E9995'
+                                   placeholder="Ethererum Address" required>
                         </div>
-
-                        <div class="form-group">
-                            <button class="btn btn-primary " name="submit" type="submit">Submit</button>
-                        </div>
-
-                        <div class="form-group">
-
-                            <br />
-                            <div class="progress">
-                                <div class="progress-bar">0%</div>
-                            </div>
-
-                            <button class="btn btn-primary" id="test">
-                                <span class="spinner-border spinner-border-sm"></span>
-                                Loading..
-                            </button>
-
-
-
-
-                            <div id="status"></div>
-
-
-                        </div>
-
                     </form>
                 </div>
 
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary " name="submit" type="submit" id="modal-getethbalanc-submit">Submit</button>
                 </div>
 
             </div>
@@ -166,7 +186,7 @@
 
     <!-- Footer -->
     <div class="pgfooter">
-        <p>© 2019 Copyright: Demo Corp</p>
+        <p>© 2019 Copyright: MJQ Demo Corp</p>
     </div>
 
 </div>
